@@ -4,12 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\HasApiTokens;
 
 class AuthController extends Controller
 {
     use ApiResponseTrait;
 
+    public function index()
+    {
+        $user = Auth::user();
+        if ($user)
+            if ($user->role_id == $this->adminRole)
+                return $this->apiResponse(User::all());
+            else
+                return $this->unAuthoriseResponse();
+        else
+            return $this->unAuthoriseResponse();
+    }
 
     public function register(Request $request)
     {
@@ -35,16 +47,17 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $name = strtolower($request->name);
+        $user = User::where('name', $name)->first();
         $loginData = [
-            'name' => $request->name,
+            'name' => $name,
             'password' => $request->password
         ];
 
         if (!auth()->attempt($loginData)) {
             return $this->apiResponse(null, false, 'User name or password is invalid!', 400);
         }
-        $name = strtolower($request->name);
-        $user = User::where('name', $name)->first();
+
         $accessToken = auth()->user()->createToken('LaserProject')->accessToken;
 
         $data = ['user' => $user, 'accessToken' => $accessToken];

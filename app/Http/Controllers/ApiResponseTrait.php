@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 trait ApiResponseTrait
 {
     public $paginateNumber = 15;
+    public $adminRole = 1;
+    public $techRole = 2;
+    public $reception = 3;
 
 
     /*
@@ -18,66 +21,48 @@ trait ApiResponseTrait
      * ]
      */
 
-//    public function apiResponse($data = null, $error = null, $code = 200)
-//    {
-//        $array = [
-//            'data' => $data,
-//            'status' => in_array($code, $this->successCode()) ? true : false,
-//            'error' => $error
-//        ];
-//        return response($array, $code);
-//    }
-
-    public function apiResponse($data = null, $status = true,$error = null, $statusCode = 200)
+    public
+    function apiResponse($data = null, $status = true, $error = null, $statusCode = 200)
     {
         $array = [
             'data' => $data,
             'status' => $status,
             'error' => $error,
-            'statusCode'=>$statusCode
+            'statusCode' => $statusCode
         ];
         return response($array);
     }
 
-    public function successCode()
+    public
+    function unAuthoriseResponse()
     {
-        return [
-            200, 201, 202
-        ];
+        return $this->apiResponse(null, 0, 'Unauthorized !', 401);
     }
 
-    public function createdResponse($data)
+    public
+    function notFoundMassage($more = null)
     {
-        return $this->apiResponse($data, null, 201);
+        return $this->apiResponse(null, 1, $more . " Not found in our database !", 404);
     }
 
-    public function deleteResponse()
+    public
+    function requiredField($message)
     {
-        return $this->apiResponse(true, null, 200);
-
+        return $this->apiResponse(null, false, $message, 200);
     }
 
-    public function unAuthoriseResponse()
+    public
+    function apiValidation($request, $array)
     {
-        return $this->apiResponse('Unauthorised !', null, 401);
-    }
+        foreach ($array as $field) {
+            if (!$request->has($field))
+                return [false, 'Field ' . $field . ' is required'];
 
-    public function notFoundMassage($more = null)
-    {
-        return $this->apiResponse(null, $more ." Not found", 404);
-    }
-
-    public function generalError()
-    {
-        return $this->apiResponse(null, "General Error", 404);
-    }
-
-    public function apiValidation(Request $request, $array)
-    {
-
-        $validate = Validator::make($request->all(), $array);
-        if ($validate->fails()) {
-            return $this->apiResponse(null, $validate->errors(), 520);
+            if ($request[$field] == null)
+                return [false, "Field " . $field . " can't be empty"];
         }
+        return [true, 'No error'];
     }
+
 }
+
