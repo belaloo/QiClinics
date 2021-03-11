@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4e539775-56fe-4025-84dd-919e27fc6588" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiResponseTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiResponseTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/PatientCondition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PatientCondition.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,7 +185,8 @@
       <workItem from="1615362059673" duration="744000" />
       <workItem from="1615363569559" duration="1028000" />
       <workItem from="1615401684585" duration="12975000" />
-      <workItem from="1615416008297" duration="1714000" />
+      <workItem from="1615416008297" duration="3154000" />
+      <workItem from="1615461672176" duration="2207000" />
     </task>
     <servers />
   </component>

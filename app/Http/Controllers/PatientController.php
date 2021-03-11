@@ -93,8 +93,17 @@ class PatientController extends Controller
      * @param \App\Models\Patient $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patient $patient)
+    public function destroy(Request $request)
     {
-        //
+        $validate = $this->apiValidation($request, ['id']);
+        if ($validate[0] == 'true') {
+            if (Auth::user()) {
+                $patient = Patient::where('id', $request->id)->first();
+                if ($patient) {
+                    $patient->delete();
+                    return $this->apiResponse(true);
+                } else return $this->notFoundMassage('Patient');
+            } else return $this->unAuthoriseResponse();
+        } else return $this->requiredField($validate[1]);
     }
 }

@@ -25,6 +25,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/patient/index', [\App\Http\Controllers\PatientController::class, 'index']);
     Route::post('/patient/update', [\App\Http\Controllers\PatientController::class, 'update']);
     Route::get('/patient/show/{id}', [\App\Http\Controllers\PatientController::class, 'show']);
+    Route::post('/patient/destroy', [\App\Http\Controllers\PatientController::class, 'destroy']);
 
     Route::get('/user/index', [\App\Http\Controllers\AuthController::class, 'index']);
 });
