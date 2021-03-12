@@ -11,13 +11,15 @@ class AuthController extends Controller
 {
     use ApiResponseTrait;
 
-    public function index()
+    public function index($pageSize)
     {
         $user = Auth::user();
         if ($user)
-            if ($user->role_id == $this->adminRole)
-                return $this->apiResponse(User::all());
-            else
+            if ($user->role_id == $this->adminRole) {
+                $users = User::paginate($pageSize);
+                $colliction = $users->getCollection();
+                return $this->apiResponse($colliction);
+            } else
                 return $this->unAuthoriseResponse();
         else
             return $this->unAuthoriseResponse();
@@ -35,6 +37,7 @@ class AuthController extends Controller
                 $user->name = strtolower($request->name);
                 $user->password = $password;
                 $user->role_id = $request->role_id;
+                $user->is_active = 1;
                 $user->save();
                 $accessToken = $user->createToken('LaserProject')->accessToken;
                 $data = ['user' => $user, 'accessToken' => $accessToken];
@@ -62,5 +65,42 @@ class AuthController extends Controller
 
         $data = ['user' => $user, 'accessToken' => $accessToken];
         return $this->apiResponse($data);
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+        $validate = $this->apiValidation($request, ['user_id', 'new_password']);
+        if ($validate[0] == 'true') {
+            if ($user) {
+                if ($user->role_id == $this->adminRole) {
+                    $editUser = User::where('id', $request->user_id)->first();
+                    if ($editUser) {
+                        $password = bcrypt($request->new_password);
+                        $editUser->password = $password;
+                        $editUser->save();
+                        return $this->apiResponse('true');
+                    } else return $this->notFoundMassage('User');
+                } else return $this->unAuthoriseResponse();
+            } else return $this->unAuthoriseResponse();
+        } else return $this->requiredField($validate[1]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $user = Auth::user();
+        $validate = $this->apiValidation($request, ['user_id','status']);
+        if ($validate[0] == 'true') {
+            if ($user) {
+                if ($user->role_id == $this->adminRole) {
+                    $editUser = User::where('id', $request->user_id)->first();
+                    if ($editUser) {
+                        $editUser->is_active = 0;
+                        $editUser->save();
+                        return $this->apiResponse('true');
+                    } else return $this->notFoundMassage('User');
+                } else return $this->unAuthoriseResponse();
+            } else return $this->unAuthoriseResponse();
+        } else return $this->requiredField($validate[1]);
     }
 }

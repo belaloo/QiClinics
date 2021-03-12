@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Consumable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConsumableController extends Controller
 {
+    use ApiResponseTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,10 @@ class ConsumableController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()) {
+            $consumable = Consumable::where('is_deleted',0)->get();
+            return $this->apiResponse($consumable);
+        } else return $this->unAuthoriseResponse();
     }
 
     /**
@@ -30,7 +36,7 @@ class ConsumableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +47,7 @@ class ConsumableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Consumable  $consumable
+     * @param \App\Models\Consumable $consumable
      * @return \Illuminate\Http\Response
      */
     public function show(Consumable $consumable)
@@ -52,7 +58,7 @@ class ConsumableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Consumable  $consumable
+     * @param \App\Models\Consumable $consumable
      * @return \Illuminate\Http\Response
      */
     public function edit(Consumable $consumable)
@@ -63,8 +69,8 @@ class ConsumableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Consumable  $consumable
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Consumable $consumable
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Consumable $consumable)
@@ -75,7 +81,7 @@ class ConsumableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Consumable  $consumable
+     * @param \App\Models\Consumable $consumable
      * @return \Illuminate\Http\Response
      */
     public function destroy(Consumable $consumable)

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\TratedAreas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TratedAreasController extends Controller
 {
+    use ApiResponseTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,10 @@ class TratedAreasController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()) {
+            $trated = TratedAreas::where('is_deleted', 0)->get();
+            return $this->apiResponse($trated);
+        } else return $this->unAuthoriseResponse();
     }
 
     /**
@@ -30,7 +36,7 @@ class TratedAreasController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +47,7 @@ class TratedAreasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TratedAreas  $tratedAreas
+     * @param \App\Models\TratedAreas $tratedAreas
      * @return \Illuminate\Http\Response
      */
     public function show(TratedAreas $tratedAreas)
@@ -52,7 +58,7 @@ class TratedAreasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TratedAreas  $tratedAreas
+     * @param \App\Models\TratedAreas $tratedAreas
      * @return \Illuminate\Http\Response
      */
     public function edit(TratedAreas $tratedAreas)
@@ -63,8 +69,8 @@ class TratedAreasController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TratedAreas  $tratedAreas
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\TratedAreas $tratedAreas
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, TratedAreas $tratedAreas)
@@ -75,7 +81,7 @@ class TratedAreasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TratedAreas  $tratedAreas
+     * @param \App\Models\TratedAreas $tratedAreas
      * @return \Illuminate\Http\Response
      */
     public function destroy(TratedAreas $tratedAreas)

@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $this->call([
-            TreatedAreasSeeder::class,
-            ProductsUsedSeeder::class,
-            ConsumablesUsedSeeder::class,
-            SkinTypeSeeder::class,
-            HairThicknessSeeder::class,
-            DeviceSeeder::class,
-            MachinesSeeder::class,
+            \Database\Seeders\TreatedAreasSeeder::class,
+            \Database\Seeders\ProductsUsedSeeder::class,
+            \Database\Seeders\ConsumablesUsedSeeder::class,
+            \Database\Seeders\SkinTypeSeeder::class,
+            \Database\Seeders\  HairThicknessSeeder::class,
+            \Database\Seeders\ DeviceSeeder::class,
+            \Database\Seeders\ MachinesSeeder::class,
 //            OAuthSeeder::class
         ]);
     }

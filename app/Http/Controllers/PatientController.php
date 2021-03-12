@@ -16,10 +16,10 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($pageSize)
     {
         if (Auth::user()) {
-            $patient = Patient::all();
+            $patient = Patient::paginate($pageSize);
             return $this->apiResponse($patient);
         } else
             return $this->unAuthoriseResponse();

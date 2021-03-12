@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductsUsed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsUsedController extends Controller
 {
+    use ApiResponseTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,11 @@ class ProductsUsedController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()) {
+            $products = ProductsUsed::where('is_deleted', 0)->get();
+
+            return $this->apiResponse($products);
+        } else return $this->unAuthoriseResponse();
     }
 
     /**
@@ -30,7 +37,7 @@ class ProductsUsedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +48,7 @@ class ProductsUsedController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ProductsUsed  $productsUsed
+     * @param \App\Models\ProductsUsed $productsUsed
      * @return \Illuminate\Http\Response
      */
     public function show(ProductsUsed $productsUsed)
@@ -52,7 +59,7 @@ class ProductsUsedController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ProductsUsed  $productsUsed
+     * @param \App\Models\ProductsUsed $productsUsed
      * @return \Illuminate\Http\Response
      */
     public function edit(ProductsUsed $productsUsed)
@@ -63,8 +70,8 @@ class ProductsUsedController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProductsUsed  $productsUsed
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\ProductsUsed $productsUsed
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ProductsUsed $productsUsed)
@@ -75,7 +82,7 @@ class ProductsUsedController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ProductsUsed  $productsUsed
+     * @param \App\Models\ProductsUsed $productsUsed
      * @return \Illuminate\Http\Response
      */
     public function destroy(ProductsUsed $productsUsed)
