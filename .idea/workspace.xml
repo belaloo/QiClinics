@@ -19,28 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e539775-56fe-4025-84dd-919e27fc6588" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConsumableController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConsumableController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DeviceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DeviceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MachineController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MachineController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsUsedController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsUsedController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TratedAreasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TratedAreasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ConsumablesUsedSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ConsumablesUsedSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DeviceSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DeviceSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/HairThicknessSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/HairThicknessSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/MachinesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/MachinesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/OAuthSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/OAuthSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ProductsUsedSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ProductsUsedSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/SkinTypeSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/SkinTypeSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/TreatedAreasSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-    </list>
+    <list default="true" id="4e539775-56fe-4025-84dd-919e27fc6588" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -224,7 +203,7 @@
       <workItem from="1615416008297" duration="3154000" />
       <workItem from="1615461672176" duration="3410000" />
       <workItem from="1615487606839" duration="4961000" />
-      <workItem from="1615573665824" duration="4508000" />
+      <workItem from="1615573665824" duration="5334000" />
     </task>
     <servers />
   </component>

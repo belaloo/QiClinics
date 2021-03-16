@@ -20,7 +20,8 @@ class PatientController extends Controller
     {
         if (Auth::user()) {
             $patient = Patient::paginate($pageSize);
-            return $this->apiResponse($patient);
+            $colliction = $patient->getCollection();
+            return $this->apiResponse($colliction);
         } else
             return $this->unAuthoriseResponse();
     }
