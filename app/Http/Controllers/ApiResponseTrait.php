@@ -22,7 +22,7 @@ trait ApiResponseTrait
      */
 
     public
-    function apiResponse($data = null, $status = true, $error = null, $statusCode = 200)
+    function apiResponse($data = null,bool $status = true, $error = null, $statusCode = 200)
     {
         $array = [
             'data' => $data,
