@@ -56,15 +56,18 @@ class AuthController extends Controller
             'name' => $name,
             'password' => $request->password
         ];
+        if ($user->is_active) {
+            if (!auth()->attempt($loginData)) {
+                return $this->apiResponse(null, false, 'User name or password is invalid!', 400);
+            }
 
-        if (!auth()->attempt($loginData)) {
-            return $this->apiResponse(null, false, 'User name or password is invalid!', 400);
+            $accessToken = auth()->user()->createToken('LaserProject')->accessToken;
+
+            $data = ['user' => $user, 'accessToken' => $accessToken];
+            return $this->apiResponse($data);
+        } else {
+            return $this->unAuthoriseResponse();
         }
-
-        $accessToken = auth()->user()->createToken('LaserProject')->accessToken;
-
-        $data = ['user' => $user, 'accessToken' => $accessToken];
-        return $this->apiResponse($data);
     }
 
     public function update(Request $request)
@@ -89,7 +92,7 @@ class AuthController extends Controller
     public function changeStatus(Request $request)
     {
         $user = Auth::user();
-        $validate = $this->apiValidation($request, ['user_id','status']);
+        $validate = $this->apiValidation($request, ['user_id', 'status']);
         if ($validate[0] == 'true') {
             if ($user) {
                 if ($user->role_id == $this->adminRole) {
