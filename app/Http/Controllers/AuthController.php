@@ -30,7 +30,7 @@ class AuthController extends Controller
         if ($request->has('name') && $request->has('password') && $request->has('role_id')) {
             $user = User::where('name', $request->name)->first();
             if ($user) {
-                return $this->apiResponse(null, 0, "User name found in our database !", 403);
+                return $this->apiResponse(null, false, "User name found in our database !", 403);
             } else {
                 $password = bcrypt($request->password);
                 $user = new User;
@@ -44,7 +44,7 @@ class AuthController extends Controller
                 return $this->apiResponse($data);
             }
         } else {
-            return $this->apiResponse(null, 0, "User name or password filed is required ", 403);
+            return $this->apiResponse(null, false, "User name or password filed is required ", 403);
         }
     }
 
@@ -95,7 +95,7 @@ class AuthController extends Controller
                 if ($user->role_id == $this->adminRole) {
                     $editUser = User::where('id', $request->user_id)->first();
                     if ($editUser) {
-                        $editUser->is_active = 0;
+                        $editUser->is_active = $request->status;
                         $editUser->save();
                         return $this->apiResponse('true');
                     } else return $this->notFoundMassage('User');
