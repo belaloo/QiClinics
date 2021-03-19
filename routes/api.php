@@ -41,4 +41,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/tratedAreas/index', [\App\Http\Controllers\TratedAreasController::class, 'index']);
 
     Route::get('/machine/index/{parent_id}', [\App\Http\Controllers\MachineController::class, 'index']);
+
+    Route::post('/session/store', [\App\Http\Controllers\SessionController::class, 'store']);
+    Route::get('/session/index/{pageSize}', [\App\Http\Controllers\SessionController::class, 'index']);
 });

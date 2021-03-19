@@ -33,8 +33,7 @@ trait ApiResponseTrait
         return response($array);
     }
 
-    public
-    function unAuthoriseResponse()
+    public function unAuthoriseResponse()
     {
         return $this->apiResponse(null, 0, 'Unauthorized !', 401);
     }
