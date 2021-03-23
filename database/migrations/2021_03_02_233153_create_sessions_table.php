@@ -37,7 +37,10 @@ class CreateSessionsTable extends Migration
             $table->integer('technician_id')->unsigned();
             $table->integer('machine_id')->unsigned();
             $table->integer('patient_id')->unsigned();
+            $table->integer('created_by')->unsigned();
 
+            $table->foreign('created_by')->references('id')->on('users')
+                ->onDelete('cascade');
             $table->foreign('technician_id')->references('id')->on('users')
                 ->onDelete('cascade');
             $table->foreign('machine_id')->references('id')->on('machines')

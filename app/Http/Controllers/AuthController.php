@@ -38,8 +38,8 @@ class AuthController extends Controller
                 $user->password = $password;
                 $user->role_id = $request->role_id;
                 $user->is_active = 1;
-                $user->save();
                 $accessToken = $user->createToken('LaserProject')->accessToken;
+                $user->save();
                 $data = ['user' => $user, 'accessToken' => $accessToken];
                 return $this->apiResponse($data);
             }
@@ -56,18 +56,21 @@ class AuthController extends Controller
             'name' => $name,
             'password' => $request->password
         ];
-        if ($user->is_active) {
-            if (!auth()->attempt($loginData)) {
-                return $this->apiResponse(null, false, 'User name or password is invalid!', 400);
+        if ($user) {
+            if ($user->is_active) {
+                if (!auth()->attempt($loginData)) {
+                    return $this->apiResponse(null, false, 'User name or password is invalid!', 400);
+                }
+
+                $accessToken = auth()->user()->createToken('LaserProject')->accessToken;
+
+                $data = ['user' => $user, 'accessToken' => $accessToken];
+                return $this->apiResponse($data);
+            } else {
+                return $this->unAuthoriseResponse();
             }
-
-            $accessToken = auth()->user()->createToken('LaserProject')->accessToken;
-
-            $data = ['user' => $user, 'accessToken' => $accessToken];
-            return $this->apiResponse($data);
-        } else {
-            return $this->unAuthoriseResponse();
         }
+        return $this->apiResponse(null, false, 'User name or password is invalid!', 400);
     }
 
     public function update(Request $request)

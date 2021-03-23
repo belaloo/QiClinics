@@ -20,11 +20,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e539775-56fe-4025-84dd-919e27fc6588" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DTOs/MedicalDTO.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Helpar/PatientTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/QiClinics.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QiClinics.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiResponseTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiResponseTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SessionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/SessionConsumable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SessionConsumable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.rnd" beforeDir="false" afterPath="$PROJECT_DIR$/.rnd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MedicalRecordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MedicalRecordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/MedicalRecord.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/MedicalRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Patient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/PatientMedicalRecord.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/PatientMedicalRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_02_233152_create_patients_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_02_233152_create_patients_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_02_233153_create_sessions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_02_233153_create_sessions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_02_233501_create_session_areas_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_02_233903_create_session_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_02_233903_create_session_details_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_06_112720_create_conditions_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_06_112737_create_patient_conditions_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_06_115140_create_patient_medical_records_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_06_115140_create_patient_medical_records_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,6 +187,12 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/vendor/bensampo/laravel-enum" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-eventmanager" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
+      <path value="$PROJECT_DIR$/vendor/hanneskod/classtools" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
+      <path value="$PROJECT_DIR$/vendor/spatie/data-transfer-object" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pTQc8DBucmWRCb1ybAQdOGUyKM" />
@@ -176,14 +201,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PCHELKA" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\My Project\QiClinics\app\Http\Controllers\Helpar" />
       <recent name="D:\My Project\QiClinics\database" />
       <recent name="D:\QiClinics\database\migrations" />
     </key>
@@ -214,7 +241,11 @@
       <workItem from="1615573665824" duration="5334000" />
       <workItem from="1615905687239" duration="1017000" />
       <workItem from="1616056770946" duration="3041000" />
-      <workItem from="1616099809174" duration="6086000" />
+      <workItem from="1616099809174" duration="14928000" />
+      <workItem from="1616367033930" duration="3248000" />
+      <workItem from="1616416127354" duration="3424000" />
+      <workItem from="1616448866665" duration="7209000" />
+      <workItem from="1616457207603" duration="60000" />
     </task>
     <servers />
   </component>
@@ -238,17 +269,41 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="309" y="42" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1615578051637" />
-    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615576847288">
+    <state x="487" y="32" key="#com.intellij.ide.util.MemberChooser" timestamp="1616416624218">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1615576847288" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1615415897669">
+    <state x="487" y="32" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1616416624218" />
+    <state x="363" y="99" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1616454042627">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1615415897669" />
+    <state x="363" y="99" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1616454042627" />
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1616369438407">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1616369438407" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1616368011794">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616368011794" />
     <state x="434" y="260" key="Generate Helper Code" timestamp="1616101592752">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="434" y="260" key="Generate Helper Code/0.0.1366.728@0.0.1366.728" timestamp="1616101592752" />
+    <state x="517" y="283" key="NewPhpFileDialog" timestamp="1616454670797">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="517" y="283" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1616454670797" />
+    <state x="391" y="81" width="583" height="566" key="find.popup" timestamp="1616197700349">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="391" y="81" width="583" height="566" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1616197700349" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1616456228517">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1616456228517" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1616417782460">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1616417782460" />
   </component>
 </project>

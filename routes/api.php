@@ -16,15 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 //php artisan route:list
 
-Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
-Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
-Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/new_register', [\App\Http\Controllers\AuthController::class, 'register']);
+Route::get('/new_login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
+Route::post('/new_login', [\App\Http\Controllers\AuthController::class, 'login']);
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/patient/store', [\App\Http\Controllers\PatientController::class, 'store']);
     Route::get('/patient/index/{pageSize}', [\App\Http\Controllers\PatientController::class, 'index']);
     Route::post('/patient/update', [\App\Http\Controllers\PatientController::class, 'update']);
     Route::get('/patient/show/{id}', [\App\Http\Controllers\PatientController::class, 'show']);
+    Route::get('/patient/getById/{id}', [\App\Http\Controllers\PatientController::class, 'show']);
     Route::post('/patient/destroy', [\App\Http\Controllers\PatientController::class, 'destroy']);
 
     Route::get('/user/index/{pageSize}', [\App\Http\Controllers\AuthController::class, 'index']);
@@ -44,4 +45,6 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('/session/store', [\App\Http\Controllers\SessionController::class, 'store']);
     Route::get('/session/index/{pageSize}', [\App\Http\Controllers\SessionController::class, 'index']);
+
+    Route::get('/medicalRecord/index', [\App\Http\Controllers\MedicalRecordController::class, 'index']);
 });

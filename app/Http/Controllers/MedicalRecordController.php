@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\DTOs\MedicalDTO;
 use App\Models\MedicalRecord;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MedicalRecordController extends Controller
 {
+    use ApiResponseTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,10 @@ class MedicalRecordController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()) {
+            $data = MedicalRecord::all();
+            return $this->apiResponse($data);
+        } else return $this->unAuthoriseResponse();
     }
 
     /**
@@ -30,7 +37,7 @@ class MedicalRecordController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +48,7 @@ class MedicalRecordController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MedicalRecord  $medicalRecord
+     * @param \App\Models\MedicalRecord $medicalRecord
      * @return \Illuminate\Http\Response
      */
     public function show(MedicalRecord $medicalRecord)
@@ -52,7 +59,7 @@ class MedicalRecordController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MedicalRecord  $medicalRecord
+     * @param \App\Models\MedicalRecord $medicalRecord
      * @return \Illuminate\Http\Response
      */
     public function edit(MedicalRecord $medicalRecord)
@@ -63,8 +70,8 @@ class MedicalRecordController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MedicalRecord  $medicalRecord
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\MedicalRecord $medicalRecord
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, MedicalRecord $medicalRecord)
@@ -75,7 +82,7 @@ class MedicalRecordController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MedicalRecord  $medicalRecord
+     * @param \App\Models\MedicalRecord $medicalRecord
      * @return \Illuminate\Http\Response
      */
     public function destroy(MedicalRecord $medicalRecord)

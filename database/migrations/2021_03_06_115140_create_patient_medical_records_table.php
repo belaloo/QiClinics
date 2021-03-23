@@ -17,8 +17,6 @@ class CreatePatientMedicalRecordsTable extends Migration
             $table->increments('id');
             $table->integer('patient_id')->unsigned();
             $table->integer('medical_record_id')->unsigned();
-            $table->boolean('is_true');
-            $table->string('notes');
 
             $table->foreign('patient_id')->references('id')->on('patients')
                 ->onDelete('cascade');

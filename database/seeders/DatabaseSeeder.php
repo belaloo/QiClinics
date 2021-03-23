@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\  HairThicknessSeeder::class,
             \Database\Seeders\ DeviceSeeder::class,
             \Database\Seeders\ MachinesSeeder::class,
+            \Database\Seeders\ MedicalSeeder::class,
 //            OAuthSeeder::class
         ]);
     }

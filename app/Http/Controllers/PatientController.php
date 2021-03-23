@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Helpar\PatientTrait;
 use App\Models\Patient;
+use App\Models\PatientMedicalRecord;
+use App\Models\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
 class PatientController extends Controller
 {
-    use ApiResponseTrait;
+    use ApiResponseTrait, PatientTrait;
 
     /**
      * Display a listing of the resource.
@@ -34,14 +37,22 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $this->apiValidation($request, ['name', 'age', 'mobile']);
+        $validate = $this->apiValidation($request, ['name', 'age', 'mobile', 'gender', 'medical_records']);
         if ($validate[0] == 'true') {
             if (Auth::user()) {
                 $patient = new Patient;
                 $patient->name = $request->name;
                 $patient->age = $request->age;
                 $patient->mobile = $request->mobile;
+                $patient->gender = $request->gender;
                 $patient->save();
+
+                foreach ($request->medical_records as $record) {
+                    $medical_record = new PatientMedicalRecord();
+                    $medical_record->patient_id = $patient->id;
+                    $medical_record->medical_record_id = $record;
+                    $medical_record->save();
+                }
                 return $this->apiResponse($patient);
             } else return $this->unAuthoriseResponse();
         } else return $this->requiredField($validate[1]);
@@ -56,9 +67,11 @@ class PatientController extends Controller
     public function show($id)
     {
         if (Auth::user()) {
-            $patient = Patient::where('id', $id)->first();
-            if ($patient) return $this->apiResponse($patient);
-            else return $this->notFoundMassage('Patient');
+            $patient = Patient::whereId(1)->first();
+            if ($patient) {
+                $patient['medical_records'] = $this->getPatientMedicalRecords($id);
+                return $this->apiResponse([$patient]);
+            } else return $this->notFoundMassage('patient');
         } else return $this->unAuthoriseResponse();
     }
 
@@ -71,7 +84,7 @@ class PatientController extends Controller
      */
     public function update(Request $request)
     {
-        $validate = $this->apiValidation($request, ['id', 'name', 'age', 'mobile']);
+        $validate = $this->apiValidation($request, ['id', 'name', 'age', 'mobile', 'gender']);
 
         if ($validate[0] == 'true') {
             if (Auth::user()) {
@@ -80,7 +93,9 @@ class PatientController extends Controller
                     $patient->name = $request->name;
                     $patient->age = $request->age;
                     $patient->mobile = $request->mobile;
+                    $patient->gender = $request->gender;
                     $patient->save();
+                    $this->updatePatientMedicalRecords($request->medical_records, $patient->id);
                     return $this->apiResponse($patient);
                 } else return $this->notFoundMassage('Patient');
             } else return $this->unAuthoriseResponse();
@@ -101,10 +116,14 @@ class PatientController extends Controller
             if (Auth::user()) {
                 $patient = Patient::where('id', $request->id)->first();
                 if ($patient) {
-                    $patient->delete();
+                    $session = Session::wherePatientId($request->id)->first();
+                    if (!$session) $patient->delete();
+                    else return $this->apiResponse(null, 0, "We can't delete a patient if he\she has sessions");
                     return $this->apiResponse(true);
                 } else return $this->notFoundMassage('Patient');
             } else return $this->unAuthoriseResponse();
         } else return $this->requiredField($validate[1]);
     }
+
+
 }
